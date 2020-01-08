@@ -8,14 +8,23 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController {
+class MovieListViewController: BaseViewController {
 
+    
+    // presenterInterface : Access PresenterInterface Protocol Methods
+    var presenterInterface: MovieListPresenterInterface!
+    
+    // presenterShippingAddressObj : Access ShippingAddressPresenter Class Methods
+    var presenterObj: MovieListPresenter!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        presenterObj.viewWillAppear(animated: animated)
+    }
 
     /*
     // MARK: - Navigation

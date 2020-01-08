@@ -7,3 +7,20 @@
 //
 
 import Foundation
+enum MovieDetailNavigationOption{
+    
+}
+
+protocol MovieDetailWireframeInterface: WireframeInterface {
+    func navigate(to: MovieDetailNavigationOption)
+}
+
+protocol MovieDetailViewInterface: ViewInterface {
+}
+
+protocol MovieDetailPresenterInterface: PresenterInterface {
+}
+
+protocol MovieDetailInteractorInterface: InteractorInterface {
+    
+}

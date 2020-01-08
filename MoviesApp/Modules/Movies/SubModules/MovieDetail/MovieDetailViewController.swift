@@ -8,8 +8,14 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: BaseViewController {
 
+    
+    // presenterInterface : Access PresenterInterface Protocol Methods
+    var presenterInterface: MovieDetailPresenterInterface!
+    
+    // presenterShippingAddressObj : Access ShippingAddressPresenter Class Methods
+    var presenterObj: MovieDetailPresenter!
     override func viewDidLoad() {
         super.viewDidLoad()
 

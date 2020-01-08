@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1DD3276E503E6F3ADDAE8190 /* Pods_MoviesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 646C0B94ADD5BCB7117F7892 /* Pods_MoviesAppTests.framework */; };
+		32A3EAA523C5C1130064472E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3EAA423C5C1130064472E /* Extensions.swift */; };
+		32A3EAA923C5C2570064472E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3EAA823C5C2570064472E /* LoadingView.swift */; };
+		32A3EAAB23C5EAA90064472E /* CustomNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3EAAA23C5EAA90064472E /* CustomNavbar.swift */; };
+		32A3EAAE23C5ECAB0064472E /* MovieFontsAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3EAAD23C5ECAB0064472E /* MovieFontsAndColors.swift */; };
+		32A3EAB223C5F20D0064472E /* MyriadPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32A3EAAF23C5F0B30064472E /* MyriadPro-Bold.otf */; };
+		32A3EAB323C5F2120064472E /* MyriadPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32A3EAB123C5F0B30064472E /* MyriadPro-Light.otf */; };
+		32A3EAB423C5F2150064472E /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32A3EAB023C5F0B30064472E /* MyriadPro-Regular.otf */; };
 		32A6344523C4CB9F0011720B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A6344423C4CB9F0011720B /* AppDelegate.swift */; };
 		32A6344C23C4CBA10011720B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32A6344B23C4CBA10011720B /* Assets.xcassets */; };
 		32A6344F23C4CBA10011720B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32A6344D23C4CBA10011720B /* LaunchScreen.storyboard */; };
@@ -59,6 +66,13 @@
 
 /* Begin PBXFileReference section */
 		1BF014AA132C6425E1DA3AE0 /* Pods_MoviesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32A3EAA423C5C1130064472E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		32A3EAA823C5C2570064472E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		32A3EAAA23C5EAA90064472E /* CustomNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavbar.swift; sourceTree = "<group>"; };
+		32A3EAAD23C5ECAB0064472E /* MovieFontsAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFontsAndColors.swift; sourceTree = "<group>"; };
+		32A3EAAF23C5F0B30064472E /* MyriadPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Bold.otf"; sourceTree = "<group>"; };
+		32A3EAB023C5F0B30064472E /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
+		32A3EAB123C5F0B30064472E /* MyriadPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Light.otf"; sourceTree = "<group>"; };
 		32A6344123C4CB9F0011720B /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A6344423C4CB9F0011720B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32A6344B23C4CBA10011720B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +145,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32A3EAA323C5C0F80064472E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				32A3EAA423C5C1130064472E /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		32A3EAA623C5C2260064472E /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				32A3EAA723C5C23C0064472E /* CustomViews */,
+			);
+			path = Generic;
+			sourceTree = "<group>";
+		};
+		32A3EAA723C5C23C0064472E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				32A3EAA823C5C2570064472E /* LoadingView.swift */,
+				32A3EAAA23C5EAA90064472E /* CustomNavbar.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		32A3EAAC23C5EC8A0064472E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				32A3EAAD23C5ECAB0064472E /* MovieFontsAndColors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		32A6343823C4CB9F0011720B = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +203,8 @@
 		32A6344323C4CB9F0011720B /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				32A3EAAC23C5EC8A0064472E /* Constants */,
+				32A3EAA323C5C0F80064472E /* Extensions */,
 				32A6347B23C4DA160011720B /* Font */,
 				32A6347323C4D7E50011720B /* Modules */,
 				32A6347223C4D7DC0011720B /* Utilities */,
@@ -196,6 +245,7 @@
 		32A6347323C4D7E50011720B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				32A3EAA623C5C2260064472E /* Generic */,
 				32A6349423C4ECD60011720B /* VIPER BASE */,
 				32A6347423C4D82E0011720B /* Movies */,
 			);
@@ -275,6 +325,9 @@
 		32A6347B23C4DA160011720B /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				32A3EAAF23C5F0B30064472E /* MyriadPro-Bold.otf */,
+				32A3EAB123C5F0B30064472E /* MyriadPro-Light.otf */,
+				32A3EAB023C5F0B30064472E /* MyriadPro-Regular.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -440,6 +493,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A3EAB423C5F2150064472E /* MyriadPro-Regular.otf in Resources */,
+				32A3EAB323C5F2120064472E /* MyriadPro-Light.otf in Resources */,
+				32A3EAB223C5F20D0064472E /* MyriadPro-Bold.otf in Resources */,
 				32A6344F23C4CBA10011720B /* LaunchScreen.storyboard in Resources */,
 				32A6347F23C4DA4F0011720B /* Movie.storyboard in Resources */,
 				32A6344C23C4CBA10011720B /* Assets.xcassets in Resources */,
@@ -593,15 +649,19 @@
 				32A6348723C4DABD0011720B /* MovieListInterfaces.swift in Sources */,
 				32A6348B23C4DAE00011720B /* MovieDetailViewController.swift in Sources */,
 				32A6349323C4DB770011720B /* MovieDetailInterfaces.swift in Sources */,
+				32A3EAAE23C5ECAB0064472E /* MovieFontsAndColors.swift in Sources */,
 				32A6348523C4DAA70011720B /* MovieListInteractor.swift in Sources */,
 				32A634AA23C4F06D0011720B /* MoviesDataProvider.swift in Sources */,
 				32A6348F23C4DB100011720B /* MovieDetailWireframe.swift in Sources */,
 				32A6348D23C4DAF40011720B /* MovieDetailPresenter.swift in Sources */,
 				32A6349E23C4EF950011720B /* BaseWireframe.swift in Sources */,
+				32A3EAA923C5C2570064472E /* LoadingView.swift in Sources */,
 				32A634A023C4EFA60011720B /* PresenterInterface.swift in Sources */,
+				32A3EAA523C5C1130064472E /* Extensions.swift in Sources */,
 				32A6344523C4CB9F0011720B /* AppDelegate.swift in Sources */,
 				32A6349123C4DB480011720B /* MovieDetailInteractor.swift in Sources */,
 				32A6348323C4DA970011720B /* MovieListPresenter.swift in Sources */,
+				32A3EAAB23C5EAA90064472E /* CustomNavbar.swift in Sources */,
 				32A6349A23C4EF4D0011720B /* BaseInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,4 +6,10 @@
 //  Copyright © 2020 Aditya. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol ViewInterface: class {
+    func showLoadingProgress()
+    func hideLoadingProgress()
+    func showToastMessage(_ errorMessage : String?)
+}

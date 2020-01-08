@@ -7,3 +7,19 @@
 //
 
 import Foundation
+import UIKit
+
+class MovieListWireframe : BaseWireframe  {
+    // MARK: - Private properties -
+    private let _storyboard = UIStoryboard(name: "Movie", bundle: nil)
+    
+    init() {
+        let moduleViewController = _storyboard.instantiateViewController(ofType: MovieListViewController.self)
+        super.init(viewController: moduleViewController)
+        
+        let interactor = MovieListInteractor()
+        let presenter = MovieListPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        moduleViewController.presenterObj = presenter
+        moduleViewController.presenterInterface = presenter
+    }
+}

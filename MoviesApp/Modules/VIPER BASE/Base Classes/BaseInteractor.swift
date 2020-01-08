@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import RxSwift
+
+class BaseInteractor  {
+    var primaryErrorMsgObserver = Variable<String>("")
+    var secondaryErrorMsgObserver = Variable<String>("")
+    var isLoadingObserver = Variable<Bool>(false)
+}

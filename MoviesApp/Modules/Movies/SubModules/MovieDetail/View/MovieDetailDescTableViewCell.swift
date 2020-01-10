@@ -24,6 +24,8 @@ class MovieDetailDescTableViewCell: UITableViewCell {
     }
 
     func setOverViewText(overViewtext: String){
-        self.overViewLabel.text = overViewtext
+        //self.overViewLabel.text = overViewtext
+        
+        self.overViewLabel.setTextWithLineHeight(text: overViewtext, value: 3)
     }
 }

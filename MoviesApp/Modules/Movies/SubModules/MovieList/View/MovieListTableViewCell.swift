@@ -31,7 +31,7 @@ class MovieListTableViewCell: UITableViewCell {
         
         if let overview = movie.overview{
             print("overview**\(overview)")
-            overViewLabel.text = overview
+            overViewLabel.setTextWithLineHeight(text: overview, value: 2)
         }
         
         if let voteAverage = movie.vote_average{

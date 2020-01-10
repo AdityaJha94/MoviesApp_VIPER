@@ -12,26 +12,41 @@ class MovieListInteractor: BaseInteractor{
     
     let moviesManager = MoviesManager()
     
+    var isMoreRequestDone = Variable<Bool>(true)
     
     var shouldReload = Variable<Bool>(false)
+    var hasMoreRows : Bool = false
     
-    var movieListResponse: MovieListResponse = MovieListResponse()
-    var movieListObservableResponse: Variable<MovieListResponse>
+    var movies: [Movie] = [Movie]()
     
     var errMsgObserver = Variable<String>("")
     
-    
-    override init() {
-        
-        movieListObservableResponse = Variable(movieListResponse)
-    }
     
     //MARK:- savedCards
     open func getMoviesList(pageIndex: Int) {
         isLoadingObserver.value = true
         moviesManager.getMoviesList(pageIndex: pageIndex, { [weak self] (movieListResponse) in
-             self?.isLoadingObserver.value = false
-            self?.movieListObservableResponse.value = movieListResponse
+            self?.isLoadingObserver.value = false
+            //self?.movieListObservableResponse.value = movieListResponse
+            
+            if let totalRecords = movieListResponse.total_pages {
+                if totalRecords == pageIndex{
+                    self?.hasMoreRows = false
+                }else{
+                    self?.hasMoreRows = true
+                }
+                
+            }
+            //New Code
+            if pageIndex == 0 {
+                if let moviesResponse = self?.movies, moviesResponse.count > 0 {
+                    self?.movies.removeAll()
+                }
+            }
+            self?.movies.append(contentsOf: movieListResponse.results)
+            //New Code
+            
+            self?.shouldReload.value = true
             
         }) { (error) in
             self.isLoadingObserver.value = false
@@ -41,5 +56,34 @@ class MovieListInteractor: BaseInteractor{
             }
             
         }
-}
+    }
+    
+    //MARK:- Refresh Beneficiary List API for Pagination
+    public func refreshMovieListAPI(pageIndex: Int){
+        self.isMoreRequestDone.value = false
+        
+        //let userId = TMWUserHelper.getUserInfo().UserId ?? 0
+        moviesManager.getMoviesList(pageIndex: pageIndex, { [weak self] (movieListResponse) in
+            self?.isMoreRequestDone.value = true
+            
+            
+            if let totalRecords = movieListResponse.total_pages {
+                if totalRecords == pageIndex{
+                    self?.hasMoreRows = false
+                }else{
+                    self?.hasMoreRows = true
+                }
+            }
+            
+            self?.movies.append(contentsOf: movieListResponse.results)
+            self?.shouldReload.value = true
+            //success(BeneficiaryList)
+        }) { [weak self](error) in
+            self?.isMoreRequestDone.value = true
+            self?.shouldReload.value = true
+            if error.status_code != ErrorCode.nullData.rawValue{
+                self?.errMsgObserver.value = error.status_message
+            }
+        }
+    }
 }

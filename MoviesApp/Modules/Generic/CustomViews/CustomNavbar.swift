@@ -29,7 +29,7 @@ func addCustomNavBar(_ self : UIViewController, isCloseRequired: Bool,  title: S
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.isTranslucent = isTranslucent ?? false
-    self.navigationController?.navigationBar.tintColor = Color.blackColor
+    self.navigationController?.navigationBar.tintColor = Color.whiteColor
     self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: CustomFont(font: .regular(16.0)), NSAttributedString.Key.foregroundColor:Color.whiteColor]
     
     if #available(iOS 11, *) {

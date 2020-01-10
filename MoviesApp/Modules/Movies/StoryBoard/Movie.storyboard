@@ -23,6 +23,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3TK-5q-XdM" userLabel="Loader View">
+                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7JZ-gh-f0E">
+                                        <rect key="frame" x="165" y="-22.5" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="KYK-kX-Afp"/>
+                                            <constraint firstAttribute="height" constant="45" id="Sc1-M0-dvg"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7JZ-gh-f0E" firstAttribute="centerY" secondItem="3TK-5q-XdM" secondAttribute="centerY" id="STD-Kg-PEX"/>
+                                    <constraint firstItem="7JZ-gh-f0E" firstAttribute="centerX" secondItem="3TK-5q-XdM" secondAttribute="centerX" id="fdn-vx-hjK"/>
+                                    <constraint firstAttribute="height" id="ggI-lb-4wJ"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="KL8-2c-EVE"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lO3-Vc-Fqk">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.098039215686274508" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -116,15 +135,22 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.098039215686274508" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3TK-5q-XdM" secondAttribute="trailing" id="4fm-zk-hZL"/>
                             <constraint firstItem="lO3-Vc-Fqk" firstAttribute="trailing" secondItem="rCI-aZ-550" secondAttribute="trailing" id="m6l-Dx-Enf"/>
+                            <constraint firstItem="3TK-5q-XdM" firstAttribute="leading" secondItem="jyJ-B4-quB" secondAttribute="leading" id="peD-yR-n2D"/>
                             <constraint firstItem="lO3-Vc-Fqk" firstAttribute="top" secondItem="jyJ-B4-quB" secondAttribute="top" id="qOG-gl-FpT"/>
                             <constraint firstItem="lO3-Vc-Fqk" firstAttribute="leading" secondItem="rCI-aZ-550" secondAttribute="leading" id="srW-oM-IiC"/>
+                            <constraint firstItem="3TK-5q-XdM" firstAttribute="bottom" secondItem="rCI-aZ-550" secondAttribute="bottom" id="t8D-OY-mzU"/>
+                            <constraint firstItem="3TK-5q-XdM" firstAttribute="top" secondItem="lO3-Vc-Fqk" secondAttribute="bottom" id="tYh-NV-nwy"/>
                             <constraint firstAttribute="bottom" secondItem="lO3-Vc-Fqk" secondAttribute="bottom" id="xup-UN-8NC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rCI-aZ-550"/>
                     </view>
                     <connections>
+                        <outlet property="loaderImageView" destination="7JZ-gh-f0E" id="cnI-VC-PRx"/>
+                        <outlet property="loaderView" destination="3TK-5q-XdM" id="e4P-gL-kVG"/>
                         <outlet property="movieListTableView" destination="lO3-Vc-Fqk" id="nOv-8O-x6f"/>
+                        <outlet property="sectionFooterHeightConstraint" destination="ggI-lb-4wJ" id="jGv-ag-IHh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACB-AO-QCZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -150,7 +176,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Z8-Tg-8n9">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Z8-Tg-8n9">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                                 </imageView>
                                             </subviews>

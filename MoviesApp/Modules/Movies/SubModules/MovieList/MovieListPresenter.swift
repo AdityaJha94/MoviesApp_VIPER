@@ -16,9 +16,8 @@ class MovieListPresenter: BasePresenter {
     var movies: [Movie] = [Movie]()
     var page: Int = 1
     var total_pages: Int = 1
-//    var pageIndexInput : Int = 0
-//    var topRecord : Int = 26
-//    var isDataLoading = false
+    var isDataLoading = false
+
     
     // MARK: - Lifecycle -
     init(wireframe: MovieListWireframe, view: MovieListViewController, interactor: MovieListInteractor) {
@@ -51,18 +50,40 @@ extension MovieListPresenter : MovieListPresenterInterface{
     
     func setUpRxObservableControl(){
         
-        //Observe MovieListResponse
-        _interactor.movieListObservableResponse
-            .asObservable()
-            .bind {[weak self] (movieListResponse) in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    strongSelf.movies = movieListResponse.results
-                    if strongSelf.movies.count > 0{
-                        strongSelf.updateUIBasedOnMovieData()
-                    }
+//        //Observe MovieListResponse
+//        _interactor.movieListObservableResponse
+//            .asObservable()
+//            .bind {[weak self] (movieListResponse) in
+//                guard let strongSelf = self else { return }
+//                DispatchQueue.main.async {
+//                    strongSelf.movies = movieListResponse.results
+//                    if strongSelf.movies.count > 0{
+//                        strongSelf.updateUIBasedOnMovieData()
+//                    }
+//                }
+//         }.disposed(by: disposeBag)
+        
+        //Observe Listing Response
+        _interactor.shouldReload.asObservable().subscribe(onNext: { [weak self] (element) in
+            
+            DispatchQueue.main.async {
+                if(element){
+                    self?.movies = (self?._interactor.movies)!
+                    self?.updateUIBasedOnMovieData()
                 }
-         }.disposed(by: disposeBag)
+            }
+        }).disposed(by: disposeBag)
+        
+        _interactor.isMoreRequestDone.asObservable().subscribe(onNext: { [weak self] (element) in
+            guard let strongSelf = self else { return }
+            
+            DispatchQueue.main.async {
+                if(element){
+                    //_interactor.beneficiaryResponse
+                    strongSelf.reloadTableViewData()
+                }
+            }
+        }).disposed(by: disposeBag)
         
 //        _interactor.shouldReload.asObservable().subscribe(onNext: { [weak self] (element) in
 //            guard let strongSelf = self else { return }
@@ -101,40 +122,38 @@ extension MovieListPresenter : MovieListPresenterInterface{
     
     func reloadTableViewData(){
         
-//        _view.sectionFooterHeightConstraint.constant = 0
-//        _view.loaderView.isHidden = true
-//        _view.bookmarksTableView.reloadData()
+        _view.sectionFooterHeightConstraint.constant = 0
+        _view.loaderView.isHidden = true
+        _view.movieListTableView.reloadData()
     }
     
 }
 
 extension MovieListPresenter{
     func getAllMovies(pageIndex: Int){
-    //_interactor.fetchBookMarksAPI(pageIndexInput: pageIndexInput)
         _interactor.getMoviesList(pageIndex: pageIndex)
     }
     
     func refreshMovieList()  {
-//        if(_interactor.hasMoreRows) {
-//            pageIndexInput = pageIndexInput + 1
-//            _interactor.refreshBookMarksListAPI( topRecord: topRecord, pageIndexInput: pageIndexInput)
-//        }
+        if (_interactor.hasMoreRows) {
+            page = page + 1
+            _interactor.refreshMovieListAPI(pageIndex: page)
+        }
     }
 }
 
 extension MovieListPresenter{
     //Pagination
     func callApiForPagination(){
-        
-//        if ((_view.bookmarksTableView.contentOffset.y + _view.bookmarksTableView.frame.size.height) >= _view.bookmarksTableView.contentSize.height)
-//        {
-//            if !isDataLoading && _interactor.isMoreRequestDone.value && (_interactor.hasMoreRows) {
-//                isDataLoading = true
-//                _view.loaderView.isHidden = false
-//                _view.sectionFooterHeightConstraint.constant = 66
-//                refreshBookMarksList()
-//            }
-//        }
+        if ((_view.movieListTableView.contentOffset.y + _view.movieListTableView.frame.size.height) >= _view.movieListTableView.contentSize.height)
+        {
+            if !isDataLoading && _interactor.isMoreRequestDone.value && _interactor.hasMoreRows {
+                isDataLoading = true
+                _view.loaderView.isHidden = false
+                _view.sectionFooterHeightConstraint.constant = 66
+                refreshMovieList()
+            }
+        }
     }
 }
 
@@ -144,10 +163,16 @@ extension MovieListPresenter{
     }
 }
 
+
+
 extension MovieListPresenter{
     func updateUIBasedOnMovieData(){
-        _view.movieListTableView.reloadData()
-        _view.movieListTableView.isHidden = false
+        if self.movies.count > 0{
+            _view.movieListTableView.reloadData()
+            _view.movieListTableView.isHidden = false
+        }else{
+            //handle No data screen here
+        }
 
     }
 }

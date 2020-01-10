@@ -13,7 +13,9 @@ class MovieListPresenter: BasePresenter {
     private var _interactor: MovieListInteractor
     private var _wireframe: MovieListWireframe
     
-  
+    var movies: [Movie] = [Movie]()
+    var page: Int = 1
+    var total_pages: Int = 1
 //    var pageIndexInput : Int = 0
 //    var topRecord : Int = 26
 //    var isDataLoading = false
@@ -33,11 +35,11 @@ class MovieListPresenter: BasePresenter {
 extension MovieListPresenter : MovieListPresenterInterface{
     
     func viewDidLoad() {
-        //setUpRxObservableControl()
+        setUpRxObservableControl()
     }
     
     func viewWillAppear(animated: Bool) {
-        addCustomNavBar(_view.self, isCloseRequired: false, title: "Movie List", barTintColor: Color.navBarColor) {[weak self] in
+        addCustomNavBar(_view.self, isCloseRequired: false, title: "Movies", barTintColor: Color.navBarColor) {[weak self] in
             guard let strongSelf = self else { return }
             _ = strongSelf._view.navigationController?.popViewController(animated: true)
         }
@@ -48,6 +50,20 @@ extension MovieListPresenter : MovieListPresenterInterface{
     }
     
     func setUpRxObservableControl(){
+        
+        //Observe MovieListResponse
+        _interactor.movieListObservableResponse
+            .asObservable()
+            .bind {[weak self] (movieListResponse) in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.movies = movieListResponse.results
+                    if strongSelf.movies.count > 0{
+                        strongSelf.updateUIBasedOnMovieData()
+                    }
+                }
+         }.disposed(by: disposeBag)
+        
 //        _interactor.shouldReload.asObservable().subscribe(onNext: { [weak self] (element) in
 //            guard let strongSelf = self else { return }
 //
@@ -93,8 +109,9 @@ extension MovieListPresenter : MovieListPresenterInterface{
 }
 
 extension MovieListPresenter{
-    func getAllMovies(){
+    func getAllMovies(pageIndex: Int){
     //_interactor.fetchBookMarksAPI(pageIndexInput: pageIndexInput)
+        _interactor.getMoviesList(pageIndex: pageIndex)
     }
     
     func refreshMovieList()  {
@@ -118,6 +135,20 @@ extension MovieListPresenter{
 //                refreshBookMarksList()
 //            }
 //        }
+    }
+}
+
+extension MovieListPresenter{
+    func navigateToMovieDetail(movie: Movie){
+        _wireframe.navigate(to: .movieDetail(movie: movie))
+    }
+}
+
+extension MovieListPresenter{
+    func updateUIBasedOnMovieData(){
+        _view.movieListTableView.reloadData()
+        _view.movieListTableView.isHidden = false
+
     }
 }
 

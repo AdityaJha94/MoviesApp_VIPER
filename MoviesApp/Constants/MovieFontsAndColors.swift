@@ -16,6 +16,7 @@ struct Color {
    static let whiteColor = UIColor(hexString: "FFFFFF")
    static let blackColor = UIColor(hexString: "000000")
    static let navBarColor = UIColor(hexString: "3D3D3D")
+   static let appMainColor = UIColor(hexString: "001914")
 }
 
 //MARK:- TMW Font

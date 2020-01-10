@@ -23,3 +23,19 @@ class MovieListWireframe : BaseWireframe  {
         moduleViewController.presenterInterface = presenter
     }
 }
+
+extension MovieListWireframe: MovieListWireframeInterface{
+    func navigate(to option: MovieListNavigationOption) {
+        switch option{
+        case .movieDetail(let movie):
+            openMovieDetail(movie: movie)
+        }
+    }
+    
+    func openMovieDetail(movie: Movie){
+        let movieDetailWireframe = MovieDetailWireframe.init(movie: movie)
+        navigationController?.pushWireframe(movieDetailWireframe)
+    }
+    
+    
+}

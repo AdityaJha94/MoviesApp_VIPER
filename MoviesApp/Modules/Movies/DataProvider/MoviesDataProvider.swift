@@ -7,3 +7,9 @@
 //
 
 import Foundation
+protocol MoviesDataProvider{
+    
+    //Send Money To bank
+    func getMovieList(pageIndex: Int, with success:@escaping (MovieListResponse)->Void, with errorCode:@escaping (ErrorResponse)->Void)
+}
+

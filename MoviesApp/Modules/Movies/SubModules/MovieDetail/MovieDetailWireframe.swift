@@ -13,12 +13,12 @@ class MovieDetailWireframe : BaseWireframe  {
     // MARK: - Private properties -
     private let _storyboard = UIStoryboard(name: "Movie", bundle: nil)
     
-    init() {
+    init(movie: Movie) {
         let moduleViewController = _storyboard.instantiateViewController(ofType: MovieDetailViewController.self)
         super.init(viewController: moduleViewController)
         
         let interactor = MovieDetailInteractor()
-        let presenter = MovieDetailPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        let presenter = MovieDetailPresenter(wireframe: self, view: moduleViewController, interactor: interactor, movie: movie)
         moduleViewController.presenterObj = presenter
         moduleViewController.presenterInterface = presenter
     }

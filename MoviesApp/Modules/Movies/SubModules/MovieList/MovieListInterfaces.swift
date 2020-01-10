@@ -9,11 +9,11 @@
 import Foundation
 
 enum MovieListNavigationOption{
-    case movieDetail
+    case movieDetail(movie: Movie)
 }
 
 protocol MovieListWireframeInterface: WireframeInterface {
-    func navigate(to: MovieListNavigationOption)
+    func navigate(to option: MovieListNavigationOption)
 }
 
 protocol MovieListViewInterface: ViewInterface {

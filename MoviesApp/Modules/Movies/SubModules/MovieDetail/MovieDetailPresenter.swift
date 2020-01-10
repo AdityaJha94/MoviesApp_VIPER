@@ -14,16 +14,20 @@ class MovieDetailPresenter: BasePresenter {
     private var _interactor: MovieDetailInteractor
     private var _wireframe: MovieDetailWireframe
     
+    var movie: Movie?
+
   
 //    var pageIndexInput : Int = 0
 //    var topRecord : Int = 26
 //    var isDataLoading = false
     
     // MARK: - Lifecycle -
-    init(wireframe: MovieDetailWireframe, view: MovieDetailViewController, interactor: MovieDetailInteractor) {
+    init(wireframe: MovieDetailWireframe, view: MovieDetailViewController, interactor: MovieDetailInteractor, movie: Movie) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
+        
+        self.movie = movie
         
         super.init(baseInteractor: _interactor, view: _view)
         
@@ -38,6 +42,11 @@ extension MovieDetailPresenter : MovieDetailPresenterInterface{
     }
     
     func viewWillAppear(animated: Bool) {
+
+//        addCustomNavBar(_view.self, isCloseRequired: false, title: "Movie Detail", barTintColor: Color.navBarColor) {[weak self] in
+//            guard let strongSelf = self else { return }
+//            _ = strongSelf._view.navigationController?.popViewController(animated: true)
+//        }
 //        addCustomNavBar(_view.self, isCloseRequired: false, isBalanceRequired: false, title: Localization("lbl_bookmark"), barTintColor: Color.whiteColor) {[weak self] in
 //            guard let strongSelf = self else { return }
 //            _ = strongSelf._view.navigationController?.popViewController(animated: true)

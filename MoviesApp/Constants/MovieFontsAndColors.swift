@@ -22,10 +22,6 @@ struct Color {
 //MARK:- TMW Font
 
 struct MovieFont {
-//    static let bold = "Quicksand-Bold"
-//    static let light = "Quicksand-Light"
-//    static let medium = "Quicksand-Medium"
-//    static let regular = "Quicksand-Regular"
     static let bold = "MyriadPro-Bold"
     static let light = "MyriadPro-Light"
     static let regular = "MyriadPro-Regular"

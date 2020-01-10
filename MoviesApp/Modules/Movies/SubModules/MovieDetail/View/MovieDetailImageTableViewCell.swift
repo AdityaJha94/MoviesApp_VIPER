@@ -36,13 +36,9 @@ class MovieDetailImageTableViewCell: UITableViewCell {
     //MARK:- Add Gradient Method
     func addGradient(){
         let gradient = CAGradientLayer()
-        
         gradient.frame = posterImageView.frame
-        
-        gradient.colors = [UIColor.clear.cgColor, Color.blackColor?.cgColor]
-        
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradient.locations = [0.0, 1.0]
-        
         posterImageView.layer.insertSublayer(gradient, at: 0)
     }
 }

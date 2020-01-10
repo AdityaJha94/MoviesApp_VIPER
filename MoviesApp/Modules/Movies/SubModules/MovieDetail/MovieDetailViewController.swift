@@ -11,30 +11,23 @@ import UIKit
 class MovieDetailViewController: BaseViewController {
 
     
+    //MARK:- IB Outlets
     @IBOutlet weak var movieDetailTableView: UITableView!
+    
     // presenterInterface : Access PresenterInterface Protocol Methods
     var presenterInterface: MovieDetailPresenterInterface!
     
-    // presenterShippingAddressObj : Access ShippingAddressPresenter Class Methods
+    // presenterObj : Access MovieDetailPresenter Class Methods
     var presenterObj: MovieDetailPresenter!
+    
+    //MARK:- View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //setUpNavBar()
         movieDetailTableView.rowHeight = UITableView.automaticDimension
         movieDetailTableView.estimatedRowHeight = 45.0
         movieDetailTableView.backgroundColor = Color.appMainColor
-    }
-    
-    //MARK:- SetUp navbar Method
-    func setUpNavBar(){
-        self.title = "Movie Detail"
-        let backButton : UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back"), style: .plain, target: self, action: #selector(self.backBarButtonItemClicked))
-        
-        backButton.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        self.navigationItem.leftBarButtonItem = backButton
     }
     
     //MARK:- Button Action
@@ -74,12 +67,6 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource{
         }else{
             return UITableView.automaticDimension
         }
-        
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let newsDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "NewsDetailViewController") as? NewsDetailViewController
-        //        newsDetailVC?.article = articles[indexPath.row]
-        //        self.navigationController?.pushViewController(newsDetailVC!, animated: false)
         
     }
     

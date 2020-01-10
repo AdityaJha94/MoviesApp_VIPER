@@ -14,6 +14,7 @@ public class MoviesManager{
     
     private let dataProvider = NetworkMoviesDataProvider.nwDataprovider
     
+    //Get Movie List
     func getMoviesList(pageIndex: Int, _ success:@escaping (MovieListResponse)->Void, with errorCode:@escaping (ErrorResponse)->Void){
         
         dataProvider.getMovieList(pageIndex: pageIndex, with: { (movieList) in

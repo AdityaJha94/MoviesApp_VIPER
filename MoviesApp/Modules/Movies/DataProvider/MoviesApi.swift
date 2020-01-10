@@ -10,9 +10,6 @@ import Foundation
 import Moya
 import ObjectMapper
 
-
-
-
 public enum MoviesApi{
     case MovieList(page: Int)
 }
@@ -45,24 +42,12 @@ extension MoviesApi: TargetType{
         
     }
     
-    
     public var task: Task {
-//        if let parameters = parameters {
-//            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-//        } else {
-//            return .requestPlain
-//        }
-        //return .requestPlain
-        
-        // 2
-        //let authParams = ["apikey": "8eac22f4c24d01c480e4d99fef2edfc3"]
-        
         switch self {
         case .MovieList(let page):
-            // 3
             return .requestParameters(
                 parameters: [
-                    "api_key": "8eac22f4c24d01c480e4d99fef2edfc3",
+                    "api_key": KAPIKey,
                     "page": page,
                 ],
                 encoding: URLEncoding.default)

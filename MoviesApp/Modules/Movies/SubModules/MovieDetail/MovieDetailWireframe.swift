@@ -18,7 +18,7 @@ class MovieDetailWireframe : BaseWireframe  {
         super.init(viewController: moduleViewController)
         
         let interactor = MovieDetailInteractor()
-        let presenter = MovieDetailPresenter(wireframe: self, view: moduleViewController, interactor: interactor, movie: movie)
+        let presenter = MovieDetailPresenter(wireframe: self, view: moduleViewController, interactor: interactor, movie: movies)
         moduleViewController.presenterObj = presenter
         moduleViewController.presenterInterface = presenter
     }

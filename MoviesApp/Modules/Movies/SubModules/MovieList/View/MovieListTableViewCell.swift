@@ -30,7 +30,6 @@ class MovieListTableViewCell: UITableViewCell {
         }
         
         if let overview = movie.overview{
-            print("overview**\(overview)")
             overViewLabel.setTextWithLineHeight(text: overview, value: 2)
         }
         
@@ -39,7 +38,7 @@ class MovieListTableViewCell: UITableViewCell {
         }
         
         if let releaseDate = movie.release_date{
-            releaseYearLabel.text = getRequiredDateString(dateString: releaseDate, passedDateFormat: "yyyy-MM-dd", requiredDateFormat: "yyyy")
+            releaseYearLabel.text = MovieUtil.getRequiredDateString(dateString: releaseDate, passedDateFormat: "yyyy-MM-dd", requiredDateFormat: "yyyy")
         }
         
         if let urlMovieImage = movie.poster_path{
@@ -49,15 +48,7 @@ class MovieListTableViewCell: UITableViewCell {
         }
     }
     
-    func getRequiredDateString(dateString: String, passedDateFormat: String, requiredDateFormat: String) -> String{
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateFormat = passedDateFormat
-        let date = dateFormatter1.date(from: dateString)!
-        
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = requiredDateFormat
-        let requiredString = dateFormatter2.string(from: date)
-        return requiredString
-    }
+    
+    
 
 }

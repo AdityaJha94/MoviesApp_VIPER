@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 class MovieListPresenter: BasePresenter {
     
+    //MARK:- Class Variables
     private unowned var _view: MovieListViewController
     private var _interactor: MovieListInteractor
     private var _wireframe: MovieListWireframe
@@ -30,7 +32,7 @@ class MovieListPresenter: BasePresenter {
     }
 }
 
-// MARK: - Controller LifeCycle
+// MARK: - View Controller LifeCycle Methods
 extension MovieListPresenter : MovieListPresenterInterface{
     
     func viewDidLoad() {
@@ -48,6 +50,7 @@ extension MovieListPresenter : MovieListPresenterInterface{
         
     }
     
+    //MARK:- RXObservable Methods
     func setUpRxObservableControl(){
         
 //        //Observe MovieListResponse
@@ -62,6 +65,18 @@ extension MovieListPresenter : MovieListPresenterInterface{
 //                    }
 //                }
 //         }.disposed(by: disposeBag)
+        
+        self._interactor.errMsgObserver.asObservable()
+            .bind { [weak self] (errorMsg) in
+                guard let strongSelf = self else { return }
+                
+                if errorMsg != "" {
+                    DispatchQueue.main.async {
+                        //Handle error here
+//                        strongSelf._view.view.makeToast(errorMsg, duration: 3.0, position: .center)
+                    }
+                }
+            }.disposed(by: disposeBag)
         
         //Observe Listing Response
         _interactor.shouldReload.asObservable().subscribe(onNext: { [weak self] (element) in
@@ -85,38 +100,7 @@ extension MovieListPresenter : MovieListPresenterInterface{
             }
         }).disposed(by: disposeBag)
         
-//        _interactor.shouldReload.asObservable().subscribe(onNext: { [weak self] (element) in
-//            guard let strongSelf = self else { return }
-//
-//            DispatchQueue.main.async {
-//                if(element){
-//                    if(strongSelf._interactor.bookMarkATMResponse.count == 0) {
-//                        strongSelf.bookMarkATMResponse = strongSelf._interactor.bookMarkATMResponse
-//                        strongSelf._view.bookmarksTableView.isHidden = false
-//                        strongSelf._view.bookmarksTableView.backgroundView?.isHidden = false
-//                        strongSelf._view.setupBookMarkEmptyView(statusCode: ((self?._interactor.statusCode)!), statusMessage: ((self?._interactor.statusMessage)!)) // when no bookmark present empty view.
-//                    } else {
-//                        strongSelf.bookMarkATMResponse = strongSelf._interactor.bookMarkATMResponse
-//                        strongSelf._view.bookmarksTableView.isHidden = false
-//                        strongSelf._view.bookmarksTableView.backgroundView?.isHidden = true
-//                        strongSelf._view.bookmarksTableView.reloadData()
-//                        //strongSelf._view.reminderSettingsTableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
-//                    }
-//
-//                }
-//            }
-        //}).disposed(by: disposeBag)
-        
-        //Observe Pagination Response
-//        _interactor.isMoreRequestDone.asObservable().subscribe(onNext: { [weak self] (element) in
-//            guard let strongSelf = self else { return }
-//
-//            DispatchQueue.main.async {
-//                if(element){
-//                    strongSelf.reloadTableViewData()
-//                }
-//            }
-//        }).disposed(by: disposeBag)
+
     }
     
     
@@ -129,6 +113,8 @@ extension MovieListPresenter : MovieListPresenterInterface{
     
 }
 
+
+//MARK:- API functions
 extension MovieListPresenter{
     func getAllMovies(pageIndex: Int){
         _interactor.getMoviesList(pageIndex: pageIndex)
@@ -142,6 +128,7 @@ extension MovieListPresenter{
     }
 }
 
+//MARK:- Pagination required Setup method
 extension MovieListPresenter{
     //Pagination
     func callApiForPagination(){
@@ -157,6 +144,7 @@ extension MovieListPresenter{
     }
 }
 
+//MARK:- Redirection Method
 extension MovieListPresenter{
     func navigateToMovieDetail(movie: Movie){
         _wireframe.navigate(to: .movieDetail(movie: movie))

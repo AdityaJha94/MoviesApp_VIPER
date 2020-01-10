@@ -73,43 +73,6 @@ public class Movie : Mappable {
     }
 }
 
-
-/*
-struct MovieListResponse: Decodable {
-    var page: Int?
-    var results = [Movie]()
-    var total_pages : Int?
-    var total_results : Int?
-    
-    enum CodingKeys: String, CodingKey {
-        case page = "page", results = "results", total_pages = "total_pages",total_results = "total_results"
-    }
-    
-}
-
-struct Movie: Decodable {
-    var id : CLongLong?
-    var video : Bool?
-    var vote_count : CLongLong?
-    var video_average : CLongLong?
-    var title : String?
-    var release_date : String?
-    var original_language : String?
-    var original_title : String?
-    var genre_ids : [Int]?
-    var backdrop_path : String?
-    var adult : Bool?
-    var overview : String?
-    var poster_path : String?
-    var popularity : Int?
-    var media_type : String?
-    
-    
-    enum CodingKeys: String, CodingKey {
-        case id, video, vote_count,video_average,title,release_date,original_language, original_title, genre_ids,backdrop_path, adult, overview, poster_path,popularity,media_type
-    }
-}
-*/
 public class ErrorResponse: Mappable {
     var status_code:Int!
     var status_message:String!

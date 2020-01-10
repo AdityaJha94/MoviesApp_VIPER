@@ -12,17 +12,15 @@ class MovieListInteractor: BaseInteractor{
     
     let moviesManager = MoviesManager()
     
+    //Rx Variables
     var isMoreRequestDone = Variable<Bool>(true)
-    
     var shouldReload = Variable<Bool>(false)
     var hasMoreRows : Bool = false
-    
+    var errMsgObserver = Variable<String>("")
+
     var movies: [Movie] = [Movie]()
     
-    var errMsgObserver = Variable<String>("")
-    
-    
-    //MARK:- savedCards
+    //MARK:- Get Movie List
     open func getMoviesList(pageIndex: Int) {
         isLoadingObserver.value = true
         moviesManager.getMoviesList(pageIndex: pageIndex, { [weak self] (movieListResponse) in
@@ -58,7 +56,7 @@ class MovieListInteractor: BaseInteractor{
         }
     }
     
-    //MARK:- Refresh Beneficiary List API for Pagination
+    //MARK:- Refresh Movie List API for Pagination
     public func refreshMovieListAPI(pageIndex: Int){
         self.isMoreRequestDone.value = false
         

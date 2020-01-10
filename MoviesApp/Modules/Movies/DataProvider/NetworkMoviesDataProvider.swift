@@ -29,6 +29,8 @@ public class NetworkMoviesDataProvider: MoviesDataProvider {
     
     static let nwDataprovider = NetworkMoviesDataProvider()
     
+    
+    //Get Movies List
     func getMovieList(pageIndex: Int, with success: @escaping (MovieListResponse) -> Void, with errorCode: @escaping (ErrorResponse) -> Void) {
         
         if !MovieUtil.isConnectedToInternet() {
@@ -62,8 +64,5 @@ public class NetworkMoviesDataProvider: MoviesDataProvider {
             }
         }
     }
-    
-
-    
     
 }

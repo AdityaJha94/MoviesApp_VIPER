@@ -11,6 +11,7 @@ import UIKit
 
 let KBaseUrl = "https://api.themoviedb.org/3"
 let KImageBaseUrl = "http://image.tmdb.org/t/p/w500"
+let KAPIKey = "8eac22f4c24d01c480e4d99fef2edfc3"
 
 struct Constants {
     

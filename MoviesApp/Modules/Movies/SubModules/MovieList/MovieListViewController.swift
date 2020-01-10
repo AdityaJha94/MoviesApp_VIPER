@@ -10,7 +10,7 @@ import UIKit
 
 class MovieListViewController: BaseViewController {
 
-    
+    //MARK:- IBOutlets
     @IBOutlet weak var movieListTableView: UITableView!
     @IBOutlet weak var loaderView: UIView!
     @IBOutlet weak var loaderImageView: UIImageView!
@@ -25,7 +25,7 @@ class MovieListViewController: BaseViewController {
     
     
     
-    
+    //MARK:- View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +40,7 @@ class MovieListViewController: BaseViewController {
     }
 
     
+    //MARK:- Required SetUp Method
     func setUp(){
         presenterObj.page = 1
         callAPI()
@@ -50,6 +51,7 @@ class MovieListViewController: BaseViewController {
     }
     
     
+    //MARK:- Call API
     func callAPI(){
         //self.showSpinner(onView: self.view)
         presenterObj.getAllMovies(pageIndex: presenterObj.page)
@@ -80,7 +82,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource{
 
 //Scrollview delegate methods for pagination are commented for now.
 
-// Sceoll View Delegate Methods
+//MARK:- Scroll View Delegate Methods
 extension MovieListViewController{
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
